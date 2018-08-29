@@ -1,0 +1,188 @@
+E:\python\anaconda\python.exe F:/Files/Software_Sciences/hw1/hw1.py
+
+------------|indent|------------
+1
+[1, 2, 3]
+2
+[1, 2, 3]
+3
+[1, 2, 3]
+[1, 2, 3]
+1
+[4, 5, 6]
+2
+[4, 5, 6]
+3
+[4, 5, 6]
+[4, 5, 6]
+1
+[7, 8, 9]
+2
+[7, 8, 9]
+3
+[7, 8, 9]
+[7, 8, 9]
+Done looping
+pass
+
+------------|module|------------
+<matplotlib.mlab.PCA object at 0x000001DD9279E828>
+pass
+
+------------|issue_27|------------
+Real number division: 5/2=2.5
+Integer division: 5/2=2
+pass
+
+------------|function|------------
+(4, 3)
+pass
+
+------------|strings|------------
+Double qouted string
+Single qouted string
+Triple single qouted
+    multiline string
+Triple double qouted 
+    multiline string
+pass
+
+------------|exceptions|------------
+Cannot be divided by zero
+pass
+
+------------|lists|------------
+The length of list3 is 2
+list3[0][0]=0
+list3[0][2:8] is [2, 3, 4, 5, 6, 7]
+list3[0][2:] is [2, 3, 4, 5, 6, 7, 8, 9]
+list3[0][:8] is [0, 1, 2, 3, 4, 5, 6, 7]
+list3[0][:-1] is [0, 1, 2, 3, 4, 5, 6, 7, 8]
+i is in list1: True
+list4 is [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+list5 is [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+y==z is True
+pass
+
+------------|tuples|------------
+Tuples can not be modified
+2*3 and 2^3 is 6, 8
+pass
+
+------------|dictionaries|------------
+No key named time
+There is key named name: True
+get method test: 0
+The length of new_dict: 3
+The keys of new_dict: dict_keys(['name', 'course', 'time'])
+The values of new_dict: dict_values(['Yifan', 'FSS', 'TT0430p'])
+The items of new_dict: dict_items([('name', 'Yifan'), ('course', 'FSS'), ('time', 'TT0430p')])
+pass
+
+------------|defaultdicts|------------
+defaultdict(<class 'str'>, {'key': 'The defaultdict works well.'})
+pass
+
+------------|counter|------------
+Counter({2: 4, 0: 3, 6: 1, 3: 1})
+[(2, 4), (0, 3)]
+pass
+
+------------|sets|------------
+Sets only have distinct entries: 3
+in test: False
+pass
+
+------------|ctrl_flow|------------
+Processing loop no. 1
+Processing loop no. 2
+Processing loop no. 3
+Processing loop no. 4
+Processing loop no. 5
+Processing loop no. 6
+Processing loop no. 7
+Processing loop no. 8
+Processing loop no. 9
+Cease loop
+pass
+
+------------|truthiness|------------
+They are all falsy
+all works well
+any works well
+pass
+
+------------|sorting|------------
+[6, 7, 8, 9, 10]
+[10, 9, 8, 7, 6]
+pass
+
+------------|list_cprhs|------------
+They all work well
+pass
+
+------------|iter_gene|------------
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+<generator object iter_gene.<locals>.<genexpr> at 0x000001DD9C2D6468>
+pass
+
+------------|randomness|------------
+Uniformly distrbuted number: 0.715494
+Since the seed keeps unchanged, the random number also: True
+The random number is in range(10): True
+[4, 3, 7, 6, 5, 9, 1, 2, 0, 8]
+Randomly picked up number: 6
+Sample without replacement: [3, 9]
+Sample with replacement: [2, 9]
+pass
+
+------------|regex|------------
+True
+pass
+
+------------|obj_orient|------------
+The set contains 3: True
+There is no such entry in the set!
+pass
+
+------------|func_tools|------------
+3^2=9
+2^3=8
+Cube of xs: [1, 8, 27]
+Cube of xs: [1, 8, 27]
+The odds in xs: [1, 3]
+The odds in xs: [1, 3]
+The product of xs: 6
+The product of xs: 6
+pass
+
+------------|enumerating|------------
+Foundation
+Software
+Science
+pass
+
+------------|zip_unpack|------------
+zipped list: [(1, 'a'), (2, 'b'), (3, 'c')]
+numbers: [1, 2, 3]
+letters: ['a', 'b', 'c']
+pass
+
+------------|arg_kwarg|------------
+unnamed arguments:  (1, 2)
+keyword arguments:  {'key1': 'key1', 'key2': 'key2'}
+6
+pass
+
+ pass= 24, fail= 0, %pass= 100%
+
+Process finished with exit code 0
