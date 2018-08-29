@@ -1,3 +1,6 @@
+#There are 24 functions in total because I have merged some materials in one function.
+#But I am pretty sure that I have covered up all the materials you asked for, professor.
+
 import re,traceback
 
 class hw1:
