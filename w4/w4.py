@@ -4,6 +4,7 @@ import re
 
 
 class data:
+
     def __init__(self,filename):
         self.w={}
         self.syms={}
@@ -14,7 +15,7 @@ class data:
         self._use=[]
         self.indeps=[]
         self.filename=filename
-        self=self.rows1()
+
 
 
     def indep(self,current):
@@ -25,14 +26,14 @@ class data:
 
     def header(self,cells):     #w
         for c0,x in enumerate(cells):
-            if not re.match(r"%?",x):
+            if not re.match(r"\?",x):
                c=len(self._use)
                self._use.append(c0)
                self.name.append(x)
-               if re.match(r"[<>%$]",x):
+               if re.match(r"[<>\$]",x):
                    self.nums[c]=num()
                else:
-                   self.syms[c]=sym()
+                   self.syms[c]=sym([])
                if re.match("<",x):
                    self.w[c]=-1
                elif re.match(">",x):
@@ -50,11 +51,11 @@ class data:
         for c,c0 in enumerate(self._use):
             x=cells[c0]
             if not x=="?":
-                if self.nums[c]:
+                if c in self.nums.keys():
                     x=float(x)
                     self.nums[c].numInc(x)
                 else:
-                    self.nums[c].symInc(x)
+                    self.syms[c].symInc(x)
 
             self.rows[r][c]=x
         return True
@@ -73,7 +74,7 @@ class data:
                     else:
                         self.row(cells)
                 first=False
-        return self
+
 '''
     def rows(self,file):
         return self.rows1(file)#input
