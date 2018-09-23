@@ -4,8 +4,8 @@ inf=float("Inf")
 epsilon=10**(-32)
 
 class num:
-    def __init__(self,nums,func=lambda x:x):
-        self.max=len(nums)
+    def __init__(self,max=512,nums=[],func=lambda x:x):
+        self.max=max
         self.n=0
         self.mu=0
         self.m2=0
