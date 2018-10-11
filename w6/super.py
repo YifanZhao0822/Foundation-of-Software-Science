@@ -1,76 +1,82 @@
 from lib import *
 from num import num
 import re
+from rows import data
 
 # constants
 global_enough=0.5
 margin=1.05
 
 
-def super(data,**kwargs):
-    rows=data.rows
-    goal=kwargs["goal"] if kwargs.get("goal") else len(rows[0])-1
-    enough=kwargs["enough"] if kwargs.get("enough") else len(rows)**global_enough
+class superv(data):
+    def __init__(self,filename,**kwargs):
+        super(superv,self).__init__(filename)
+        self.goal=kwargs["goal"] if kwargs.get("goal") else len(self.rows[0])-1
+        self.enough=kwargs["enough"] if kwargs.get("enough") else len(self.rows)**global_enough
+        for c in self.indeps:
+            if c in self.nums.keys():
+                fyi("\n-- "+self.name[c]+" ---------")
+                self.rows=ksort(c,self.rows)
+                self.most=stop(c,self.rows)
 
-    def band(c,lo,hi):
+                self.cuts(c,0,self.most,"|..")
+
+        print(re.sub(r"\$","",cat(self.name)))
+        dump(self.rows)
+
+
+    def band(self,c,lo,hi):
         if lo==0:
-            return ".."+str(rows[hi][c])
-        elif hi==most:
-            return str(rows[lo][c])+".."
+            return ".."+str(self.rows[hi][c])
+        elif hi==self.most:
+            return str(self.rows[lo][c])+".."
         else:
-            return str(rows[lo][c])+".."+str(rows[hi][c])
+            return str(self.rows[lo][c])+".."+str(self.rows[hi][c])
 
-    def argmin(c,lo,hi):
+    def argmin(self,c,lo,hi):
         xl,xr=num(),num()
         yl,yr=num(),num()
         for i in range(lo,hi):
-            xr.numInc(rows[i][c])
-            yr.numInc(rows[i][goal])
+            xr.numInc(self.rows[i][c])
+            yr.numInc(self.rows[i][self.goal])
 
         bestx=xr.sd
         besty=yr.sd
         mu=yr.mu
         cut=None
-        if (hi-lo>2*enough):
+        if (hi-lo>2*self.enough):
             for i in range(lo,hi):
-                x=rows[i][c]
-                y=rows[i][goal]
+                x=self.rows[i][c]
+                y=self.rows[i][self.goal]
                 xl.numInc(x)
                 xr.numDec(x)
                 yl.numInc(y)
                 yr.numDec(y)
-                if xl.n>=enough and xr.n>=enough:
+                if xl.n>=self.enough and xr.n>=self.enough:
                     tempx=xl.numExpect(xl,xr)*margin
                     tempy = yl.numExpect(yl, yr) * margin
+                    if xr.n<=3:
+                        print(xr.n)
                     if tempx<bestx:
                         if tempy<besty:
                             cut,bestx,besty=i,tempx,tempy
 
         return cut,mu
 
-    def cuts(c,lo,hi,pre):
-        txt=pre+str(rows[lo][c])+".."+str(rows[hi][c])
-        cut,mu=argmin(c,lo,hi)
+    def cuts(self,c,lo,hi,pre):
+        txt=pre+str(self.rows[lo][c])+".."+str(self.rows[hi][c])
+        cut,mu=self.argmin(c,lo,hi)
         if cut:
             fyi(txt)
-            cuts(c,lo,cut,pre+"|.. ")
-            cuts(c,cut+1,hi,pre+"|.. ")
+            self.cuts(c,lo,cut,pre+"|.. ")
+            self.cuts(c,cut+1,hi,pre+"|.. ")
         else:
-            s=band(c,lo,hi)
+            s=self.band(c,lo,hi)
             fyi(txt+"==>"+str(int(100*mu)))
             for r in range(lo,hi):
-                rows[r][c]=s
+                self.rows[r][c]=s
 
-    for c in data.indeps:
-        if c in data.nums.keys():
-            fyi("\n-- "+data.name[c]+" ---------")
-            rows=ksort(c,rows)
-            most=stop(c,rows)
 
-            cuts(c,0,most,"|..")
-
-    print(re.sub(r"%$","",cat(data.name)))
-    dump(rows)
 
 def stop(c, t):
     for i in range(len(t) - 1, -1, -1):
